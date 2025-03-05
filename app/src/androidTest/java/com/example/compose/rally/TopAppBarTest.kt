@@ -1,3 +1,4 @@
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasParent
@@ -9,6 +10,7 @@ import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.printToLog
 import com.example.compose.rally.RallyScreen
 import com.example.compose.rally.ui.components.RallyTopAppBar
+import com.example.compose.rally.ui.overview.OverviewBody
 import org.junit.Rule
 import org.junit.Test
 
@@ -37,5 +39,22 @@ class TopAppBarTest {
                 useUnmergedTree = true
             )
             .assertExists()
+    }
+}
+
+class OverviewScreenTest {
+
+    @get:Rule
+    val composeTestRule = createComposeRule()
+
+    @Test
+    fun overviewScreen_alertsDisplayed() {
+        composeTestRule.setContent {
+            OverviewBody()
+        }
+
+        composeTestRule
+            .onNodeWithText("Alerts")
+            .assertIsDisplayed()
     }
 }
